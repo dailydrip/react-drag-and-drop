@@ -8,3 +8,10 @@
   font-size: 2rem;
 }
 
+.-is-over {
+  background: yellow;
+ }
+
+.-cannot-drop {
+  background: red;
+}

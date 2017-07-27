@@ -1,7 +1,8 @@
-function reorderItem(order: number) {
+function reorderItem(itemId: number, order: number) {
   return {
     type: "REORDER_ITEM",
     payload: {
+      itemId,
       order
     }
   };
