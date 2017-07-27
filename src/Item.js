@@ -44,8 +44,7 @@ const Item = props => {
     connectDropTarget,
     connectDragPreview,
     connectDragSource,
-    isOver,
-    canDrop
+    isOver
   } = props;
 
   let className = "";

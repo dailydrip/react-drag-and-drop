@@ -16,14 +16,13 @@ const App = props => {
         id={item.id}
         order={item.order}
         reorderItem={reorderItem}
-        key={index}
+        key={item.id}
       />
     ));
 
   return (
     <div className="App">
       {itemsToRender}
-      <button onClick={() => props.reorderItem()}>Reorder</button>
       <button onClick={() => props.addItem()}>Add</button>
     </div>
   );
@@ -38,7 +37,8 @@ export const AppContainer = connect(
   },
   function mapDispatchToProps(dispatch) {
     return {
-      reorderItem: (itemId, order) => dispatch(DragDropActions.reorderItem(itemId, order)),
+      reorderItem: (itemId, order) =>
+        dispatch(DragDropActions.reorderItem(itemId, order)),
       addItem: () => dispatch(DragDropActions.addItem())
     };
   }
