@@ -1,6 +1,6 @@
 ## React Drag and Drop
 
-![](example.png)
+![](example.gif)
 
 
 ### About DailyDrip
