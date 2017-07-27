@@ -3,16 +3,26 @@ import "./App.css";
 import { connect } from "react-redux";
 import { DragDropActions } from "./actions";
 import Item from "./Item";
+import { DragDropContext } from "react-dnd";
+import HTML5Backend from "react-dnd-html5-backend";
 
 const App = props => {
+  const { reorderItem } = props;
   const itemsToRender = props.items
     .sortBy(i => i.order)
-    .map((item, index) => <Item name={item.name} key={index} />);
+    .map((item, index) => (
+      <Item
+        name={item.name}
+        id={item.id}
+        order={item.order}
+        reorderItem={reorderItem}
+        key={item.id}
+      />
+    ));
 
   return (
     <div className="App">
       {itemsToRender}
-      <button onClick={() => props.reorderItem()}>Reorder</button>
       <button onClick={() => props.addItem()}>Add</button>
     </div>
   );
@@ -27,10 +37,11 @@ export const AppContainer = connect(
   },
   function mapDispatchToProps(dispatch) {
     return {
-      reorderItem: () => dispatch(DragDropActions.reorderItem()),
+      reorderItem: (itemId, order) =>
+        dispatch(DragDropActions.reorderItem(itemId, order)),
       addItem: () => dispatch(DragDropActions.addItem())
     };
   }
 )(App);
 
-export default AppContainer;
+export default DragDropContext(HTML5Backend)(AppContainer);
